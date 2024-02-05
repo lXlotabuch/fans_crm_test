@@ -5,7 +5,7 @@ import styles                                 from './LoginPage.less'
 import Button                                 from '../components/Button/Button';
 import useLogin                               from '../hooks/useLogin';
 import Form                                   from '../components/Form/Form';
-import { ErrorParams, validateLoginParams }   from '../utils/validation';
+import { validateLoginParams }   from '../utils/validation';
 
 export interface LoginParams {
     login: string,
@@ -17,7 +17,10 @@ const LoginPage : React.FC = () => {
         login: '',
         password: ''
     })
-    const [errors, setErrors] = useState<ErrorParams | undefined>()
+    const [errors, setErrors] = useState({
+        login: '',
+        password: ''
+    })
     const { isLoading, loginAction } = useLogin()
 
     const handleChange: OnInputChange = (type, value) => {
@@ -39,12 +42,11 @@ const LoginPage : React.FC = () => {
             return
         }
 
-        const e = await loginAction(params)
-
-        if (e) {
+        try {
+            await loginAction(params)
+        } catch (e : any) {
             setErrors(e)
         }
-
     }
 
     return (

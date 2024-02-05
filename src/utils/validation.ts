@@ -6,7 +6,7 @@ export interface ErrorParams {
 
 interface Result {
     isValid: boolean,
-    error: ErrorParams
+    error: ErrorParams | any
 }
 
 const validateLoginParams  = (params: LoginParams) => {

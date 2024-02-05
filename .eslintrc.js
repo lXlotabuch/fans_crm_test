@@ -35,7 +35,8 @@ module.exports = {
         'spaced-comment': 'error',
         'quotes': ['error', 'single'],
         'no-duplicate-imports': 'error',
-        'react/prop-types': 'off'
+        'react/prop-types': 'off',
+        '@typescript-eslint/no-explicit-any': ['off']
     },
     'settings': {
         'import/resolver': {
